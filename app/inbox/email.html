@@ -1,0 +1,27 @@
+<div class="main-container align-center" ng-init="emailType = 0">
+  <div class="info-container">
+    <div>
+      <strong>Message name: </strong>{{$resolve.email.data.name}}
+    </div>
+    <div>
+      <strong>Subject line: </strong>
+      <span ng-repeat="subject in $resolve.email.data.subjects">
+        {{subject}}<span ng-if="!$last">,&nbsp;</span>
+      </span>
+    </div>
+  </div>
+  <div class="btn-group btn-toggle">
+    <button class="btn btn-default"
+      ng-class="{'btn-primary': emailType === 0}"
+      ng-click="emailType = 0">HTML</button>
+    <button class="btn btn-default"
+      ng-class="{'btn-primary': emailType === 1}"
+      ng-click="emailType = 1">Plain Text</button>
+  </div>
+  <div class="body-container">
+    <div ng-show="emailType === 0"
+      ng-bind-html="$resolve.email.data.body.html"></div>
+    <div ng-show="emailType === 1"
+      ng-bind="$resolve.email.data.body.text"></div>
+  </div>
+</div>
